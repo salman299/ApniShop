@@ -1,0 +1,43 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+
+
+@if (@signInManager.IsSignedIn(User))
+{
+
+<form method="post" asp-action="LogOff" asp-controller="Account" id="logoutForm">
+    <ul class="nav navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" id="all-products" asp-controller="Product" asp-action="Index">All Products</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" id="my-products" asp-controller="Product" asp-action="MyProducts">My Products</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link">@User.Identity.Name</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="javascript:document.getElementById('logoutForm').submit()">LogOut</a>
+        </li>
+    </ul>
+</form>
+
+
+
+}
+else { 
+
+<ul class="nav navbar-nav">
+
+    <li class="nav-item">
+        <a class="nav-link" id="registerLink" asp-controller="Account" asp-action="Register">Sign Up</a>
+    </li>
+    @*<li>@Html.ActionLink("Sign In", "Login", "Account", routeValues: null)</li>*@
+    <li class="nav-item">
+        <a class="nav-link" id="loginLink" asp-controller="Account" asp-action="Login">Sign In</a>
+    </li>
+</ul>
+}
+

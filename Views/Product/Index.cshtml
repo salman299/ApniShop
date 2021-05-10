@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ApniShop.Models.ViewModels.ProductViewModel>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-2">
+        <partial name="_SideNavigationPartial" />
+    </div>
+    <div class="col-10">
+        <h1>Index</h1>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+
+        @using (Html.BeginForm("ApproveProduct", "Product", FormMethod.Post))
+        {
+            <hr />
+            <button type="submit" value="Confirm" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Delete</button>
+
+            <br />
+
+            <table class="table" id="DataTable">
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ImageUrl)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsDeploy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsAdminApproved)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AdminName)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="ids" value="@item.ID" class="custom-checkbox" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ImageUrl)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsDeploy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsAdminApproved)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AdminName)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>
